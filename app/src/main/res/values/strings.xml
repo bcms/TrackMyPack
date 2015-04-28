@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Track Your Pack</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+
+    <string name="new_package">Novo Pacote</string>
+    <string name="update_package">Editar Pacote</string>
+    <string name="delete_package">Excluir Pacote</string>
+    <string name="refresh">Atualizar</string>
+    <string name="title_activity_package_add">Novo Pacote</string>
+    <string name="title_activity_package_details">Informações</string>
+</resources>
