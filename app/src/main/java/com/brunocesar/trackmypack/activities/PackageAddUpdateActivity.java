@@ -105,7 +105,7 @@ public class PackageAddUpdateActivity extends ActionBarActivity {
         loadFromViewToPackage();
 
         if (validatePackage()) {
-            packageDataSource.update(pack);
+            pack = packageDataSource.update(pack);
 
             Intent intent = new Intent(this, PackageDetailsActivity.class);
             intent.putExtra("package", pack);
@@ -122,7 +122,7 @@ public class PackageAddUpdateActivity extends ActionBarActivity {
         loadFromViewToPackage();
 
         if (validatePackage()) {
-            packageDataSource.create(pack);
+            pack = packageDataSource.create(pack);
 
             Intent intent = new Intent(this, PackageListActivity.class);
             intent.putExtra("package", pack);
