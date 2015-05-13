@@ -3,6 +3,7 @@ package com.brunocesar.trackmypack.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -10,10 +11,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.brunocesar.trackmypack.R;
 import com.brunocesar.trackmypack.database.PackageDataSource;
 import com.brunocesar.trackmypack.enums.Operation;
 import com.brunocesar.trackmypack.models.Package;
-import com.brunocesar.trackyourpack.R;
 
 public class PackageAddUpdateActivity extends ActionBarActivity {
 
@@ -29,29 +30,29 @@ public class PackageAddUpdateActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_package_add_update);
 
-        //Show back button
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         operation = (Operation) getIntent().getExtras().get("operation");
         pack = (Package) getIntent().getExtras().getSerializable("data");
-
-        if (pack == null)
-            pack = new Package();
 
         nameEditText = (EditText) findViewById(R.id.name_edit_text);
         codeEditText = (EditText) findViewById(R.id.code_edit_text);
 
-        packageDataSource = new PackageDataSource(this);
-        packageDataSource.open();
+        if (pack == null)
+            pack = new Package();
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setTitle(R.string.app_name);
 
         if (operation == Operation.Add)
-            setTitle("Novo Pacote");
+            actionBar.setSubtitle(R.string.add_package_title);
         else {
-            setTitle("Editar Pacote");
-
+            actionBar.setSubtitle(R.string.update_package_title);
             nameEditText.setText(pack.getName());
             codeEditText.setText(pack.getCode());
         }
+
+        packageDataSource = new PackageDataSource(this);
+        packageDataSource.open();
     }
 
     @Override
@@ -69,7 +70,7 @@ public class PackageAddUpdateActivity extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_package_add, menu);
+        getMenuInflater().inflate(R.menu.menu_package_add_udpate, menu);
         return true;
     }
 
@@ -96,7 +97,7 @@ public class PackageAddUpdateActivity extends ActionBarActivity {
             }
 
         } catch (Exception e) {
-            trace("Erro : " + e.getMessage());
+            trace(getString(R.string.error_message) + e.getMessage());
         }
     }
 
@@ -113,7 +114,7 @@ public class PackageAddUpdateActivity extends ActionBarActivity {
             setResult(Activity.RESULT_OK, intent);
             this.finish();
 
-            toast("Pacote editado com sucesso!");
+            toast(getString(R.string.package_updated_successfully_message));
         }
     }
 
@@ -130,7 +131,7 @@ public class PackageAddUpdateActivity extends ActionBarActivity {
             setResult(Activity.RESULT_OK, intent);
             this.finish();
 
-            toast("Pacote salvo com sucesso!");
+            toast(getString(R.string.package_added_successfully_message));
         }
     }
 
@@ -144,12 +145,12 @@ public class PackageAddUpdateActivity extends ActionBarActivity {
 
         if (pack.getCode().isEmpty()) {
             isValid = false;
-            codeEditText.setError("Campo obrigatório");
+            codeEditText.setError(getString(R.string.required_field_message));
         }
 
         if (pack.getName().isEmpty()) {
             isValid = false;
-            nameEditText.setError("Campo obrigatório");
+            nameEditText.setError(getString(R.string.required_field_message));
         }
         return isValid;
     }

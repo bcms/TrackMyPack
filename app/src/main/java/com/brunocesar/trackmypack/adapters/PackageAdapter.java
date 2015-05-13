@@ -7,8 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.brunocesar.trackmypack.R;
 import com.brunocesar.trackmypack.models.Package;
-import com.brunocesar.trackyourpack.R;
 
 import java.util.List;
 

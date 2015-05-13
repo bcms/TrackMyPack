@@ -1,14 +1,37 @@
 <resources>
-    <string name="app_name">Track Your Pack</string>
+    <string name="app_name">Track My Pack</string>
 
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <!-- Titles -->
+    <string name="list_package_title">Encomendas</string>
+    <string name="add_package_title">Novo Pacote</string>
+    <string name="update_package_title">Editar Pacote</string>
+    <string name="details_package_title">Informações</string>
 
+    <!-- Menu Items -->
+    <string name="delete_package_menu_item">Excluir Pacote</string>
+    <string name="edit_package_menu_item">Editar Pacote</string>
+    <string name="add_package_menu_item">Novo Pacote</string>
+    <string name="refresh_packages_menu_item">Atualizar</string>
 
-    <string name="new_package">Novo Pacote</string>
-    <string name="update_package">Editar Pacote</string>
-    <string name="delete_package">Excluir Pacote</string>
-    <string name="refresh">Atualizar</string>
-    <string name="title_activity_package_add">Novo Pacote</string>
-    <string name="title_activity_package_details">Informações</string>
+    <!-- Widgets -->
+    <string name="code_text_view">Código</string>
+    <string name="code_hint">SS123456789BR</string>
+    <string name="name_text_view">Nome</string>
+    <string name="name_hint">Livro, Série, Filme...</string>
+    <string name="save_button">Salvar</string>
+    <string name="date_text_view">Data</string>
+    <string name="action_text_view">Ação</string>
+    <string name="place_text_view">Local</string>
+
+    <!-- Details Activity -->
+    <string name="history_loading_message">Carregando histórico...</string>
+    <string name="history_no_history_message">"Nenhum histórico até o momento!"</string>
+    <string name="delete_package_confirmation_message">Tem certeza que deseja excluir este pacote?</string>
+    <string name="yes_message">Sim</string>
+    <string name="no_message">Não</string>
+    <string name="required_field_message">Campo obrigatório</string>
+    <string name="package_added_successfully_message">Pacote salvo com sucesso!</string>
+    <string name="package_updated_successfully_message">Pacote editado com sucesso!</string>
+    <string name="error_message">Erro: </string>
+
 </resources>

@@ -1,5 +1,4 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,27 +7,40 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.brunocesar.trackmypack.activities.PackageAddUpdateActivity"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/code_text_view" />
 
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/code_edit_text"
-        android:hint="Código de rastreamento (ex: DHH323SDD)"/>
-
-    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:hint="@string/code_hint"
+        android:inputType="textCapCharacters"
+        android:nextFocusForward="@+id/name_edit_text" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/name_text_view" />
+
+    <EditText
         android:id="@+id/name_edit_text"
-        android:hint="Nome (ex: Livro)"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/name_hint"
+        android:inputType="textCapWords" />
 
     <Button
+        android:id="@+id/save_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Salvar"
-        android:id="@+id/save_button"
-        android:onClick="onClick"/>
+        android:text="@string/save_button"
+        android:onClick="onClick" />
 
 </LinearLayout>

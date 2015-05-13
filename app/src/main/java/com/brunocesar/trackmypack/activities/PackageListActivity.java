@@ -3,6 +3,7 @@ package com.brunocesar.trackmypack.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,10 +12,10 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.brunocesar.trackmypack.R;
 import com.brunocesar.trackmypack.database.DatabaseHelper;
 import com.brunocesar.trackmypack.database.PackageDataSource;
 import com.brunocesar.trackmypack.models.Package;
-import com.brunocesar.trackyourpack.R;
 import com.brunocesar.trackmypack.adapters.PackageAdapter;
 import com.brunocesar.trackmypack.enums.Operation;
 
@@ -32,6 +33,10 @@ public class PackageListActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_package_list);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle(" " + getString(R.string.app_name));
+        actionBar.setSubtitle(" " + getString(R.string.list_package_title));
 
         packageDataSource = new PackageDataSource(this);
         packageDataSource.open();
@@ -53,6 +58,9 @@ public class PackageListActivity extends ActionBarActivity {
         packageListView.setAdapter(packagesAdapter);
 
         selectedItemPosition = -1;
+
+
+        //new BaseHttp().get();
     }
 
     @Override
@@ -71,7 +79,7 @@ public class PackageListActivity extends ActionBarActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_package_list, menu);
-        return true;
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
