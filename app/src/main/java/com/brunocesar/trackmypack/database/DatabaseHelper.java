@@ -3,11 +3,7 @@ package com.brunocesar.trackmypack.database;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
-/**
- * Created by BrunoCesar on 10/04/2015.
- */
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     //Packages
@@ -45,7 +41,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             ");";
 
     //Database
-    private static final String DATABASE_NAME = "trackyourpack.db";
+    private static final String DATABASE_NAME = "trackmypack.db";
     private static final int DATABASE_VERSION = 1;
 
     public DatabaseHelper(Context context){

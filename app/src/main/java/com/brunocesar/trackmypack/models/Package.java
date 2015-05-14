@@ -2,9 +2,6 @@ package com.brunocesar.trackmypack.models;
 
 import java.io.Serializable;
 
-/**
- * Created by BrunoCesar on 15/04/2015.
- */
 public class Package  implements Serializable {
 
     private long id;

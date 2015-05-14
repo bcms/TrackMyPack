@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Track My Pack</string>
 
     <!-- Titles -->
@@ -17,23 +17,25 @@
     <string name="code_text_view">Código</string>
     <string name="code_hint">SS123456789BR</string>
     <string name="name_text_view">Nome</string>
-    <string name="name_hint">Livro, Série, Filme...</string>
+    <string name="name_hint">Livro, Série, Filme…</string>
     <string name="save_button">Salvar</string>
     <string name="date_text_view">Data</string>
     <string name="action_text_view">Ação</string>
     <string name="place_text_view">Local</string>
+    <string name="package_image_view">Pacote</string>
 
     <!-- Messages -->
-    <string name="history_loading_message">Carregando histórico...</string>
-    <string name="history_no_history_message">"Nenhum histórico até o momento!"</string>
+    <string name="history_loading_message">Carregando histórico…</string>
+    <string name="history_no_history_message" tools:ignore="Typos">"Nenhum histórico até o momento!"</string>
     <string name="delete_package_confirmation_message">Tem certeza que deseja excluir este pacote?</string>
     <string name="yes_message">Sim</string>
     <string name="no_message">Não</string>
-    <string name="ok_message">Ok</string>
+    <string name="ok_message">OK</string>
     <string name="required_field_message">Campo obrigatório</string>
     <string name="package_added_successfully_message">Pacote salvo com sucesso!</string>
     <string name="package_updated_successfully_message">Pacote editado com sucesso!</string>
     <string name="error_message">Erro: </string>
     <string name="verify_connection_message">Por favor, verifique sua conexão com a internet!</string>
+    <string name="no_package_message" tools:ignore="Typos">Nenhum pacote cadastrado até o momento. Adicione um pacote para começar a rastrear!</string>
 
 </resources>

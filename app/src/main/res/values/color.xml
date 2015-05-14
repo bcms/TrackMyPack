@@ -1,11 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <item name="action_bar_background" type="color">#28A85F</item>
-    <item name="action_bar_text" type="color">#FFFFFF</item>
-    <item name="list_view_background" type="color">#6C6C6C</item>
-
-
-    <item name="primaryColor" type="color">#28A85F</item>
-    <item name="primaryColorDark" type="color">#FFFFFF</item>
-    <item name="accentColor" type="color">#6C6C6C</item>
 </resources>

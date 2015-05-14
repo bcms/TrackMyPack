@@ -1,5 +1,6 @@
 package com.brunocesar.trackmypack.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,9 +13,6 @@ import com.brunocesar.trackmypack.models.Package;
 
 import java.util.List;
 
-/**
- * Created by BrunoCesar on 18/04/2015.
- */
 public class PackageAdapter extends ArrayAdapter<com.brunocesar.trackmypack.models.Package> {
     private final Context context;
     private final List<Package> values;
@@ -26,6 +24,7 @@ public class PackageAdapter extends ArrayAdapter<com.brunocesar.trackmypack.mode
         this.values = values;
     }
 
+    @SuppressLint("ViewHolder")
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);

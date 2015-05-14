@@ -1,17 +1,3 @@
-<!--<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".PackageListActivity">
-
-    <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="always" />
-
-</menu>-->
-
-
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -20,11 +6,5 @@
         android:icon="@drawable/ic_action_new"
         app:showAsAction="always"
         android:title="@string/add_package_menu_item" />
-
-    <!--<item
-        android:id="@+id/action_refresh"
-        android:icon="@drawable/ic_action_refresh"
-        app:showAsAction="ifRoom"
-        android:title="@string/refresh_packages_menu_item" />-->
 
 </menu>

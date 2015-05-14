@@ -7,39 +7,30 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.ConnectException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
-
-/**
- * Created by BrunoCesar on 28/04/2015.
- */
-
 
 public abstract class BaseHttp<Result> {
 
-    private GetAllAsync getAllAsync;
+    //private GetAllAsync getAllAsync;
     private TaskListener<List<Result>> taskListener;
 
     protected abstract Result jsonToResult(JSONObject jsonObject) throws JSONException;
 
     protected abstract String getUrl();
 
-    public List<Result> getAll() throws ExecutionException, InterruptedException {
+    /*public List<Result> getAll() throws ExecutionException, InterruptedException {
         this.getAllAsync = new GetAllAsync();
         return jsonArrayToResultList(getAllAsync.execute().get());
-    }
+    }*/
 
     public void getAllAsync(TaskListener<List<Result>> taskListener) {
-        this.getAllAsync = new GetAllAsync();
+        GetAllAsync getAllAsync = new GetAllAsync();
         this.taskListener = taskListener;
         getAllAsync.execute();
     }
@@ -49,7 +40,7 @@ public abstract class BaseHttp<Result> {
         if (jsonArray == null)
             return null;
 
-        List<Result> results = new ArrayList<Result>();
+        List<Result> results = new ArrayList<>();
 
         for (int i = 0; i < jsonArray.length(); i++) {
             try {
@@ -73,7 +64,7 @@ public abstract class BaseHttp<Result> {
         @Override
         protected JSONArray doInBackground(Void... params) {
 
-            StringBuffer jsonString = new StringBuffer("");
+            StringBuilder jsonString = new StringBuilder("");
 
             try {
                 URL url = new URL(getUrl());
@@ -85,7 +76,7 @@ public abstract class BaseHttp<Result> {
                 InputStream inputStream = connection.getInputStream();
 
                 BufferedReader rd = new BufferedReader(new InputStreamReader(inputStream));
-                String line = "";
+                String line;
                 while ((line = rd.readLine()) != null) {
                     jsonString.append(line);
                 }

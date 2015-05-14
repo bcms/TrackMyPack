@@ -1,5 +1,6 @@
 package com.brunocesar.trackmypack.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,9 +13,6 @@ import com.brunocesar.trackmypack.models.History;
 
 import java.util.List;
 
-/**
- * Created by BrunoCesar on 05/05/2015.
- */
 public class HistoryAdapter extends ArrayAdapter<History> {
     private final Context context;
     private final List<History> values;
@@ -26,6 +24,7 @@ public class HistoryAdapter extends ArrayAdapter<History> {
         this.values = values;
     }
 
+    @SuppressLint("ViewHolder")
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -34,7 +33,6 @@ public class HistoryAdapter extends ArrayAdapter<History> {
         TextView placeTextView = (TextView) rowView.findViewById(R.id.place_text_view);
         TextView actionTextView = (TextView) rowView.findViewById(R.id.action_text_view);
         TextView dateTextView = (TextView) rowView.findViewById(R.id.date_text_view);
-        //TextView codeTextView = (TextView) rowView.findViewById(R.id.code_text_view);
 
         placeTextView.setText(values.get(position).getPlace());
         actionTextView.setText(values.get(position).getAction());

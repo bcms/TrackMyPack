@@ -10,9 +10,6 @@ import com.brunocesar.trackmypack.models.History;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by BrunoCesar on 05/05/2015.
- */
 public class HistoryDataSource {
 
     private SQLiteDatabase database;
@@ -52,7 +49,7 @@ public class HistoryDataSource {
         return get(id);
     }
 
-    public History update(History history) {
+    /*public History update(History history) {
 
         long id = history.getId();
         ContentValues values = new ContentValues();
@@ -68,7 +65,7 @@ public class HistoryDataSource {
                 DatabaseHelper.HISTORY_ID + " = " + id, null);
 
         return get(id);
-    }
+    }*/
 
     public void delete(History history) {
         long id = history.getId();
@@ -78,7 +75,7 @@ public class HistoryDataSource {
 
     public History get(long id) {
 
-        History history = null;
+        History history;
 
         Cursor cursor = database.query(DatabaseHelper.HISTORY_TABLE,
                 allColumns, DatabaseHelper.HISTORY_ID + " = " + id, null, null, null, null);
@@ -90,13 +87,13 @@ public class HistoryDataSource {
         return history;
     }
 
-    public List<History> get()
+    /*public List<History> get()
     {
         return this.get(null, null);
-    }
+    }*/
 
     public List<History> get(String where, String orderBy) {
-        List<History> histories = new ArrayList<History>();
+        List<History> histories = new ArrayList<>();
 
         Cursor cursor = database.query(DatabaseHelper.HISTORY_TABLE,
                 allColumns, where, null, null, null, orderBy);

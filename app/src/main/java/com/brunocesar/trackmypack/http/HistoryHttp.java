@@ -5,12 +5,8 @@ import com.brunocesar.trackmypack.models.History;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-/**
- * Created by BrunoCesar on 01/05/2015.
- */
 public class HistoryHttp extends BaseHttp<History> {
 
-    private final String trackUrl = "http://developers.agenciaideias.com.br/correios/rastreamento/json/";
     private String trackCode;
 
     @Override
@@ -28,7 +24,7 @@ public class HistoryHttp extends BaseHttp<History> {
 
     @Override
     protected String getUrl() {
-        return trackUrl + trackCode;
+        return "http://developers.agenciaideias.com.br/correios/rastreamento/json/" + trackCode;
     }
 
     public void setTrackCode(String trackCode) {

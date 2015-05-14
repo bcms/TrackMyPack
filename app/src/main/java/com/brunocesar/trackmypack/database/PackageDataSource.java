@@ -11,9 +11,6 @@ import com.brunocesar.trackmypack.models.Package;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by BrunoCesar on 15/04/2015.
- */
 public class PackageDataSource {
 
     private SQLiteDatabase database;
@@ -70,7 +67,7 @@ public class PackageDataSource {
 
     public Package get(long id) {
 
-        Package pack = null;
+        Package pack;
 
         Cursor cursor = database.query(DatabaseHelper.PACKAGES_TABLE,
                 allColumns, DatabaseHelper.PACKAGES_ID + " = " + id, null, null, null, null);
@@ -82,13 +79,13 @@ public class PackageDataSource {
         return pack;
     }
 
-    public List<Package> get()
-    {
-        return this.get(null, null);
-    }
+    //public List<Package> get()
+    //{
+    //    return this.get(null, null);
+    //}
 
     public List<Package> get(String where, String orderBy) {
-        List<Package> packages = new ArrayList<Package>();
+        List<Package> packages = new ArrayList<>();
 
         Cursor cursor = database.query(DatabaseHelper.PACKAGES_TABLE,
                 allColumns, where, null, null, null, orderBy);

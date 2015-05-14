@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.brunocesar.trackmypack.R;
 import com.brunocesar.trackmypack.database.DatabaseHelper;
@@ -24,7 +23,6 @@ import java.util.List;
 
 public class PackageListActivity extends ActionBarActivity {
 
-    private ListView packageListView;
     private PackageDataSource packageDataSource;
     private PackageAdapter packagesAdapter;
     private int selectedItemPosition;
@@ -43,7 +41,7 @@ public class PackageListActivity extends ActionBarActivity {
         packageDataSource = new PackageDataSource(this);
         packageDataSource.open();
 
-        packageListView = (ListView) findViewById(R.id.package_list_view);
+        ListView packageListView = (ListView) findViewById(R.id.package_list_view);
         packageListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
@@ -100,10 +98,11 @@ public class PackageListActivity extends ActionBarActivity {
                 addPackage();
                 break;
 
-            case R.id.action_refresh:
-                Toast.makeText(this, "Settings selected", Toast.LENGTH_SHORT)
-                        .show();
-                break;
+            //case R.id.action_refresh:
+                //Toast.makeText(this, "Settings selected", Toast.LENGTH_SHORT)
+                  //      .show();
+                //break;
+
             default:
                 break;
         }
@@ -146,13 +145,5 @@ public class PackageListActivity extends ActionBarActivity {
         intent.putExtra("operation", Operation.Details);
         intent.putExtra("data", pack);
         startActivityForResult(intent, Operation.Details.ordinal());
-    }
-
-    public void toast(String msg) {
-        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
-    }
-
-    private void trace(String msg) {
-        toast(msg);
     }
 }
