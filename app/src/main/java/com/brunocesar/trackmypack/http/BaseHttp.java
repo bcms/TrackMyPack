@@ -5,11 +5,16 @@ import android.os.AsyncTask;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.ConnectException;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -17,7 +22,6 @@ import java.util.concurrent.ExecutionException;
 /**
  * Created by BrunoCesar on 28/04/2015.
  */
-
 
 
 public abstract class BaseHttp<Result> {
@@ -34,18 +38,20 @@ public abstract class BaseHttp<Result> {
         return jsonArrayToResultList(getAllAsync.execute().get());
     }
 
-    public void getAllAsync(TaskListener<List<Result>> taskListener){
+    public void getAllAsync(TaskListener<List<Result>> taskListener) {
         this.getAllAsync = new GetAllAsync();
         this.taskListener = taskListener;
         getAllAsync.execute();
     }
 
-    private List<Result> jsonArrayToResultList(JSONArray jsonArray){
+    private List<Result> jsonArrayToResultList(JSONArray jsonArray) {
+
+        if (jsonArray == null)
+            return null;
 
         List<Result> results = new ArrayList<Result>();
 
-        for (int i = 0; i < jsonArray.length(); i++)
-        {
+        for (int i = 0; i < jsonArray.length(); i++) {
             try {
                 results.add(jsonToResult(jsonArray.getJSONObject(i)));
             } catch (JSONException e) {
@@ -60,7 +66,7 @@ public abstract class BaseHttp<Result> {
 
         JSONArray jsonArray;
 
-        public GetAllAsync(){
+        public GetAllAsync() {
             this.jsonArray = new JSONArray();
         }
 
@@ -70,7 +76,6 @@ public abstract class BaseHttp<Result> {
             StringBuffer jsonString = new StringBuffer("");
 
             try {
-
                 URL url = new URL(getUrl());
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("GET");
@@ -87,7 +92,9 @@ public abstract class BaseHttp<Result> {
 
                 jsonArray = new JSONArray(jsonString.toString());
 
-            } catch (Exception e) {
+            } catch (UnknownHostException ex) {
+                return null;
+            } catch (Exception ex) {
                 return jsonArray;
             }
 

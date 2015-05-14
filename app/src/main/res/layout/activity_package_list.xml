@@ -11,4 +11,16 @@
         android:scrollbars="vertical"
         android:layout_margin="16dp"/>
 
+    <TextView
+        android:id="@+id/package_message_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nenhum pacote cadastrado até o momento. Adicione um pacote para começar a rastrear!"
+        android:gravity="center"
+        android:textSize="16dp"
+        android:textStyle="italic"
+        android:layout_marginTop="70dp"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"/>
+
 </RelativeLayout>

@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.brunocesar.trackmypack.R;
@@ -28,6 +29,7 @@ public class PackageListActivity extends ActionBarActivity {
     private PackageAdapter packagesAdapter;
     private int selectedItemPosition;
     private List<com.brunocesar.trackmypack.models.Package> packages;
+    private TextView packageMessageTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,8 +61,16 @@ public class PackageListActivity extends ActionBarActivity {
 
         selectedItemPosition = -1;
 
+        packageMessageTextView = (TextView)findViewById(R.id.package_message_text_view);
+        checkMessageDisplay();
+    }
 
-        //new BaseHttp().get();
+    private void checkMessageDisplay() {
+        if(packages.size() > 0)
+            packageMessageTextView.setVisibility(View.GONE);
+        else {
+            packageMessageTextView.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -119,6 +129,7 @@ public class PackageListActivity extends ActionBarActivity {
                 packages.remove(selectedItemPosition);
 
             packagesAdapter.notifyDataSetChanged();
+            checkMessageDisplay();
         }
 
         super.onActivityResult(requestCode, resultCode, data);

@@ -54,6 +54,7 @@ public class PackageDetailsActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_package_details);
+        final PackageDetailsActivity context = this;
 
         pack = (Package) getIntent().getExtras().getSerializable("data");
 
@@ -89,39 +90,47 @@ public class PackageDetailsActivity extends ActionBarActivity {
 
                 boolean notifyChanges = false;
 
-                if (newHistories.size() == 0 && histories.size() > 0) {
-
-                    List<History> historiesToDelete = historyDataSource.get(DatabaseHelper.HISTORY_ID_PACKAGE + " = " + pack.getId(), null);
-
-                    for (History history : historiesToDelete) {
-                        historyDataSource.delete(history);
-                    }
-
-                    notifyChanges = true;
-                    histories.clear();
-
+                if (newHistories == null) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                    builder.setMessage(R.string.verify_connection_message);
+                    builder.setPositiveButton(R.string.ok_message, null);
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
                 } else {
 
-                    List<History> historiesToAdd = new ArrayList<>();
+                    if (newHistories.size() == 0 && histories.size() > 0) {
 
-                    for (History history : newHistories) {
+                        List<History> historiesToDelete = historyDataSource.get(DatabaseHelper.HISTORY_ID_PACKAGE + " = " + pack.getId(), null);
 
-                        if (historyDataSource.get(DatabaseHelper.HISTORY_DATE + " = '" + history.getDate() + "'", null).size() == 0) {
+                        for (History history : historiesToDelete) {
+                            historyDataSource.delete(history);
+                        }
 
-                            history.setIdPackage(pack.getId());
-                            history = historyDataSource.create(history);
-                            historiesToAdd.add(history);
+                        notifyChanges = true;
+                        histories.clear();
 
-                            notifyChanges = true;
+                    } else {
+
+                        List<History> historiesToAdd = new ArrayList<>();
+
+                        for (History history : newHistories) {
+
+                            if (historyDataSource.get(DatabaseHelper.HISTORY_DATE + " = '" + history.getDate() + "'", null).size() == 0) {
+
+                                history.setIdPackage(pack.getId());
+                                history = historyDataSource.create(history);
+                                historiesToAdd.add(history);
+
+                                notifyChanges = true;
+                            }
+                        }
+
+                        if (historiesToAdd.size() > 0) {
+                            Collections.reverse(historiesToAdd);
+                            histories.addAll(historiesToAdd);
                         }
                     }
-
-                    if(historiesToAdd.size() > 0) {
-                        Collections.reverse(historiesToAdd);
-                        histories.addAll(historiesToAdd);
-                    }
                 }
-
                 checkMessageDisplay(true);
 
                 if (notifyChanges)
@@ -205,14 +214,13 @@ public class PackageDetailsActivity extends ActionBarActivity {
 
         try {
             historyHttp.getAllAsync(historyTaskListener);
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             toast(e.getMessage());
         }
     }
 
     private void checkMessageDisplay(boolean afterCheck) {
-        if(histories.size() > 0)
+        if (histories.size() > 0)
             historyMessageTextView.setVisibility(View.GONE);
         else {
             historyMessageTextView.setVisibility(View.VISIBLE);

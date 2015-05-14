@@ -23,15 +23,17 @@
     <string name="action_text_view">Ação</string>
     <string name="place_text_view">Local</string>
 
-    <!-- Details Activity -->
+    <!-- Messages -->
     <string name="history_loading_message">Carregando histórico...</string>
     <string name="history_no_history_message">"Nenhum histórico até o momento!"</string>
     <string name="delete_package_confirmation_message">Tem certeza que deseja excluir este pacote?</string>
     <string name="yes_message">Sim</string>
     <string name="no_message">Não</string>
+    <string name="ok_message">Ok</string>
     <string name="required_field_message">Campo obrigatório</string>
     <string name="package_added_successfully_message">Pacote salvo com sucesso!</string>
     <string name="package_updated_successfully_message">Pacote editado com sucesso!</string>
     <string name="error_message">Erro: </string>
+    <string name="verify_connection_message">Por favor, verifique sua conexão com a internet!</string>
 
 </resources>

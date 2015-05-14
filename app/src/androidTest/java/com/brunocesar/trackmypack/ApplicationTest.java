@@ -1,4 +1,4 @@
-package com.brunocesar.trackyourpack;
+package com.brunocesar.trackmypack;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

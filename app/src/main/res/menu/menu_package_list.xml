@@ -21,10 +21,10 @@
         app:showAsAction="always"
         android:title="@string/add_package_menu_item" />
 
-    <item
+    <!--<item
         android:id="@+id/action_refresh"
         android:icon="@drawable/ic_action_refresh"
         app:showAsAction="ifRoom"
-        android:title="@string/refresh_packages_menu_item" />
+        android:title="@string/refresh_packages_menu_item" />-->
 
 </menu>

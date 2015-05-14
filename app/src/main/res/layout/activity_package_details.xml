@@ -28,8 +28,9 @@
             android:textStyle="bold"
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
             android:singleLine="true"
-            android:text="DM529455109BR" />
+            android:text="@string/code_hint" />
 
         <TextView
             android:layout_width="match_parent"
@@ -46,8 +47,9 @@
             android:textStyle="bold"
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
             android:singleLine="true"
-            android:text="Meu livro novo" />
+            android:text="@string/name_hint" />
     </LinearLayout>
 
     <ListView
@@ -55,8 +57,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:scrollbars="vertical"
-        android:visibility="gone" />
+        android:scrollbars="vertical"/>
 
     <TextView
         android:id="@+id/history_message_text_view"
@@ -64,7 +65,7 @@
         android:layout_height="wrap_content"
         android:text="@string/history_loading_message"
         android:gravity="center"
-        android:textSize="16dp"
+        android:textSize="16sp"
         android:textStyle="italic"
         android:layout_marginTop="30dp" />
 

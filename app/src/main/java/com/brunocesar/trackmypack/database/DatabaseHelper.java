@@ -41,7 +41,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     HISTORY_DETAILS + " text not null," +
                     HISTORY_ID_PACKAGE + " integer not null," +
 
-                    "FOREIGN KEY(" + HISTORY_ID_PACKAGE + ") REFERENCES " + PACKAGES_TABLE + "(" + PACKAGES_ID + ")" +
+                    "FOREIGN KEY(" + HISTORY_ID_PACKAGE + ") REFERENCES " + PACKAGES_TABLE + "(" + PACKAGES_ID + ")  ON DELETE CASCADE" +
             ");";
 
     //Database
@@ -50,6 +50,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public DatabaseHelper(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+    }
+
+    @Override
+    public SQLiteDatabase getWritableDatabase() {
+        SQLiteDatabase db = super.getWritableDatabase();
+
+        db.execSQL("PRAGMA foreign_keys = ON");
+
+        return db;
     }
 
     @Override
