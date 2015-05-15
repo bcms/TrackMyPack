@@ -98,39 +98,44 @@ public class PackageDetailsActivity extends ActionBarActivity {
                     dialog.show();
                 } else {
 
-                    if (newHistories.size() == 0 && histories.size() > 0) {
+                    try {
+                        if (newHistories.size() == 0 && histories.size() > 0) {
 
-                        List<History> historiesToDelete = historyDataSource.get(DatabaseHelper.HISTORY_ID_PACKAGE + " = " + pack.getId(), null);
+                            List<History> historiesToDelete = historyDataSource.get(DatabaseHelper.HISTORY_ID_PACKAGE + " = " + pack.getId(), null);
 
-                        for (History history : historiesToDelete) {
-                            historyDataSource.delete(history);
-                        }
+                            for (History history : historiesToDelete) {
+                                historyDataSource.delete(history);
+                            }
 
-                        notifyChanges = true;
-                        histories.clear();
+                            notifyChanges = true;
+                            histories.clear();
 
-                    } else {
+                        } else {
 
-                        List<History> historiesToAdd = new ArrayList<>();
+                            List<History> historiesToAdd = new ArrayList<>();
 
-                        for (History history : newHistories) {
+                            for (History history : newHistories) {
 
-                            if (historyDataSource.get(DatabaseHelper.HISTORY_DATE + " = '" + history.getDate() + "'", null).size() == 0) {
+                                if (historyDataSource.get(DatabaseHelper.HISTORY_DATE + " = '" + history.getDate() + "'", null).size() == 0) {
 
-                                history.setIdPackage(pack.getId());
-                                history = historyDataSource.create(history);
-                                historiesToAdd.add(history);
+                                    history.setIdPackage(pack.getId());
+                                    history = historyDataSource.create(history);
+                                    historiesToAdd.add(history);
 
-                                notifyChanges = true;
+                                    notifyChanges = true;
+                                }
+                            }
+
+                            if (historiesToAdd.size() > 0) {
+                                Collections.reverse(historiesToAdd);
+                                histories.addAll(historiesToAdd);
                             }
                         }
-
-                        if (historiesToAdd.size() > 0) {
-                            Collections.reverse(historiesToAdd);
-                            histories.addAll(historiesToAdd);
-                        }
+                    } catch (Exception ex) {
+                        System.out.println("Error: " + ex.toString());
                     }
                 }
+
                 checkMessageDisplay(true);
 
                 if (notifyChanges)
